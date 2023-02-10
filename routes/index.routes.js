@@ -5,13 +5,14 @@ const User = require('../models/User.model');
 //const session = require("express-session")
 
 /* GET home page */
+//            /
 router.get("/", (req, res, next) => {
   res.render("index");
 });
 
 // signup
 router.get("/signup", (req, res, next) => {
-  res.render("signup");
+  res.render("signUp");
 });
 router.post("/signup", async (req, res, next) => {
   const { username, password } = req.body;
@@ -19,8 +20,10 @@ router.post("/signup", async (req, res, next) => {
  const salt = await bcrypt.genSalt(12);
   const hash = await bcrypt.hash(password, salt);
  const user = {
-    username,
+  ...req.body,
+    username:username,
     password: hash,
+    
   }
  //after import user model
   await User.create(user);
@@ -35,18 +38,22 @@ router.get("/login", (req, res) => {
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
 
+ 
   const loggedUser = await User.findOne({username: username});
   const checkPassword = await bcrypt.compare(password, loggedUser.password);
+ 
+  console.log (loggedUser);
   if (checkPassword) {
-    req.session.currentUser = loggedUser;
+    req.session.user = loggedUser; 
     res.redirect("/profile");
   }
- /*
+})
 //profile 
 router.get("/profile", (req, res) => {
-  res.render("profile");
-});*/
-
+  console.log("the req", req.session.user)
+  res.render("profile", {user : req.session.user});
 });
+
+
 
 module.exports = router;
