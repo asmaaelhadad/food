@@ -8,6 +8,8 @@ const expressLayouts = require('express-ejs-layouts')
 // https://www.npmjs.com/package/morgan
 const logger = require('morgan')
 
+//const MongoStore = require('connect-mongo')
+
 // ℹ️ Needed when we deal with cookies (we will when dealing with authentication)
 // https://www.npmjs.com/package/cookie-parser
 const cookieParser = require('cookie-parser')
