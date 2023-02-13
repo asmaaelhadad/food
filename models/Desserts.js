@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 
 // TODO: Please make sure you edit the User model to whatever makes sense in this case
-const recipeSchema = new Schema(
+const dessertSchema = new Schema(
   {  owner : {
       type: Schema.Types.ObjectId ,
       ref : 'User'
@@ -25,6 +25,6 @@ const recipeSchema = new Schema(
   }
 );
 
-const Recipe = model("recipe", recipeSchema);
+const Dessert = model("dessert", dessertSchema);
 
-module.exports = Recipe ;
+module.exports = Dessert ;

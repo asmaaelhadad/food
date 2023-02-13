@@ -10,7 +10,7 @@ module.exports = app => {
 
   // required for the app when deployed to Heroku (in production)
   app.set('trust proxy', 1)
-
+const MongoStore = require ('connect-mongo')
   // use session
   app.use(
     session({
@@ -21,8 +21,12 @@ module.exports = app => {
         sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
         secure: process.env.NODE_ENV === 'production',
         httpOnly: true,
-        maxAge: 60000, // 60 * 1000 ms === 1 min
+        maxAge: 60000 * 60 *24 *7 , // 60 * 1000 ms === 1 min
       },
+      store: MongoStore.create({
+        mongoUrl: process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/food",
+        ttl: 24 * 60 * 60, // 1 day => in seconds
+      }),
     })
   )
 }
