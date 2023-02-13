@@ -6,7 +6,7 @@ const User = require('../models/User.model');
 
 const Recipe= require('../models/recipe.model');
 //     /recipes
-router.get("/" , (req,res) =>{
+router.get("/recipe" , (req,res) =>{
     
     res.render("recipe")
 }
@@ -17,11 +17,11 @@ router.get("/" , (req,res) =>{
     console.log({ recipeFound })
     res.render('recipes/one', { recipeFound })
   })*/
-  router.get("/new" , (req,res) =>{
+  router.get("/recipe/new" , (req,res) =>{
     
-    res.render("new")
+    res.render("recipe/new")
 })
-  router.post('/new', isAdmin,  async (req, res) => {
+  router.post('/recipe/new', isAdmin,  async (req, res) => {
     const body = req.body
     
     await Recipe.create({
