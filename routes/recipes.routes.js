@@ -5,38 +5,44 @@ const isAdmin = require('../middleware/isAdmin')
 const User = require('../models/User.model');
 
 const Recipe= require('../models/recipe.model');
-//     /recipes
-router.get("/recipe" , (req,res) =>{
-    
-    res.render("recipe")
+///recipes
+router.get("/recipes" , (req,res) =>{
+   res.render("recipe")
 }
-
 )
-/*router.get('/recipe', async (req, res) => {
-    const recipeFound = await Recipe.findById(req.params.recipeId).populate('owner')
-    console.log({ recipeFound })
-    res.render('recipes/one', { recipeFound })
-  })*/
-  router.get("/recipe/new" , (req,res) =>{
-    
-    res.render("recipe/new")
+router.get('/:recipeId', async (req, res) => {
+  const recipeFound = await Recipe.findById(req.params.recipeId)
+ res.render('recipes/one', { recipeFound })
 })
-  router.post('/recipe/new', isAdmin,  async (req, res) => {
+ //add new
+
+router.get("/recipes/new" ,  (req,res) =>{
+res.render("new")
+    //res.redirect("recipe")
+}) 
+  router.post('/recipes/new',   async (req, res) => {
     const body = req.body
-    
-    await Recipe.create({
-      ...body,
-      ingredients: body.ingredients.split(' '),
-      title : ''
-    })
-  
-    res.redirect('/recipe')
+ await Recipe.create(
+     body
+)
+ res.redirect('/recipes/recipes')
   })
-  router.post('/delete', isAdmin , async (req, res) => {
+   // render file, redirect page url
+//delete
+  router.post("/:recipeId/delete", isAdmin , async (req, res) => {
     await Recipe.findByIdAndDelete(req.params.recipeId)
-  
-    res.redirect('/recipe')
+       res.redirect("/recipes/recipes")
+      })
+//update
+  router.post('/:recipeId/update', async (req, res) => {
+     await Recipe.findByIdAndUpdate(req.params.recipeId, {
+    ...req.body,
+    ingredients: req.body.ingredients.split(' '),
   })
+
+  res.redirect(`/recipes/${req.params.recipeId}`)
+})
+
   
 
 

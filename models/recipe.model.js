@@ -10,13 +10,14 @@ const recipeSchema = new Schema(
       type: String,
       trim: true,
       required: false,
-      unique: true
+      /*unique: true*/
     },
     ingredients: {
       type: [String],
       required: true,
 
     },
+    
    Dish : {
       type: String,
       required: true,
@@ -27,7 +28,7 @@ const recipeSchema = new Schema(
       required: true,
       enum : ['simple', 'hard'],
     }
-  }
+  } 
 );
 
 const Recipe = model("recipe", recipeSchema);
