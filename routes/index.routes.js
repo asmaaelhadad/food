@@ -6,8 +6,8 @@ const User = require('../models/User.model');
 
 /* GET home page */
 //            /
-router.get("/recipe", (req, res, next) => {
-  res.render("recipe");
+router.get("/", (req, res, next) => {
+  res.render("index");
 });
 
 // signup
@@ -56,7 +56,7 @@ router.get("/profile", (req, res) => {
 router.get('/logout',  (req, res) => {
   req.session.destroy(err => {
     if (err) next(err)
-    res.redirect('/login')
+    res.render("index")
   })
 })
 
