@@ -38,14 +38,14 @@ res.render("new")
        res.render(`recipe`)
       })
 //update
-router.get("/:recipeId/update" , isAdmin , async (req,res) =>{
+router.get("/:recipeId/update"  , async (req,res) =>{
   const recipeFound = await Recipe.findById(req.params.recipeId)
 
   res.render("update", { recipeFound })
     
   }) 
 
-  
+
   router.post("/:recipeId/update", async (req, res) => {
      await Recipe.findByIdAndUpdate(req.params.recipeId, {
     ...req.body,
