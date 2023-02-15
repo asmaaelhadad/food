@@ -1,14 +1,13 @@
-<h1>All recipes page</h1>
-<% if (!hopper.length) { %> There is nothing in the DB <% } %> <% hopper.forEach(recipe => { %>
+<h1>One recipes page</h1>
+
 <div style="border: 1px solid black; margin: 1rem; padding: 1rem">
-  <h2><%=recipe.title%></h2>
-  <h2><%=recipe.dish%></h2>
+  <h2><%=recipeFound.title%></h2>
+  <h2><%=recipeFound.Dish%></h2>
   <ul>
-    <% recipe.ingredients.forEach(ingredient => { %>
+    <% recipeFound.ingredients.forEach(ingredient => { %>
     <li><%= ingredient %></li>
     <% }) %>
   </ul>
-  <h2><%=recipe.difficulty%></h2>
-  <a href="/recipes/<%- recipe._id %>">Details</a>
+  <h2><%=recipeFound.difficulty%></h2>
+  <a href="/recipes/<%- recipeFound._id %>">Details</a>
 </div>
-<% }) %>

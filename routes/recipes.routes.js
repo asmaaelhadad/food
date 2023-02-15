@@ -10,10 +10,7 @@ router.get("/recipes" , (req,res) =>{
    res.render("recipe")
 }
 )
-router.get('/:recipeId', async (req, res) => {
-  const recipeFound = await Recipe.findById(req.params.recipeId)
- res.render('recipes/one', { recipeFound })
-})
+
  //add new
 
 router.get("/recipes/new" ,  (req,res) =>{
@@ -28,16 +25,21 @@ res.render("new")
  res.redirect('/recipes/recipes')
   })
    // render file, redirect page url
+   //delete , update
+   router.get('/:recipeId', async (req, res) => {
+  const recipeFound = await Recipe.findById(req.params.recipeId)
+ res.render('one', { recipeFound })
+})
 //delete
-  router.post("/:recipeId/delete", isAdmin , async (req, res) => {
+  router.get("/:recipeId/delete" , async (req, res) => {
     await Recipe.findByIdAndDelete(req.params.recipeId)
-       res.redirect("/recipes/recipes")
+       res.redirect(`/recipes/recipes`)
       })
 //update
   router.post('/:recipeId/update', async (req, res) => {
      await Recipe.findByIdAndUpdate(req.params.recipeId, {
     ...req.body,
-    ingredients: req.body.ingredients.split(' '),
+    ingredients: req.body.ingredients.split(' '), 
   })
 
   res.redirect(`/recipes/${req.params.recipeId}`)
