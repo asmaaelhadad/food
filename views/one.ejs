@@ -1,13 +1,27 @@
-<h1>One recipes page</h1>
+<h1>Recipe</h1>
+<h2><%= recipeFound.title %></h2>
+<h2><%= recipeFound.Dish %></h2>
+<h2><%= recipeFound.difficulty %></h2>
+<ul>
+  <% recipeFound.ingredients.forEach(ingredient => { %>
+  <li><%= ingredient %></li>
+  <% }) %>
 
-<div style="border: 1px solid black; margin: 1rem; padding: 1rem">
-  <h2><%=recipeFound.title%></h2>
-  <h2><%=recipeFound.Dish%></h2>
-  <ul>
-    <% recipeFound.ingredients.forEach(ingredient => { %>
-    <li><%= ingredient %></li>
-    <% }) %>
-  </ul>
-  <h2><%=recipeFound.difficulty%></h2>
-  <a href="/recipes/<%- recipeFound._id %>">Details</a>
-</div>
+
+</ul>
+
+<form method="GETT" action="/recipes/<%= recipeFound._id%>/update">
+  <button style=" color: green" type="submit">update</button>
+</form>
+<form method="GET" action="/recipes/<%= recipeFound._id%>/delete">
+  <button style=" color: red" type="submit">Delete</button>
+</form>
+
+
+
+
+
+
+
+
+
