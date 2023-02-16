@@ -21,7 +21,7 @@ const recipeSchema = new Schema(
    Dish : {
       type: String,
       required: true,
-      enum : ['mainDish', 'dessert']
+      enum : ['chicken', 'dessert','fish' ,'meat' , 'mainDish' ]
     },
    difficulty : {
       type: String,

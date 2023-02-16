@@ -1,1 +1,14 @@
 <h3>Hello, this is the page for the recipes</h3>
+<h1>All recipes</h1>
+<% allRecipes.forEach(recipe => { %> <%= recipe.title %>
+    
+<form method="GETT" action="/recipes/<%= recipe._id%>/update">
+    <button style=" color: green" type="submit">update</button>
+  </form>
+  <form method="GET" action="/recipes/<%= recipe._id%>/delete">
+    <button style=" color: red" type="submit">Delete</button>
+  </form>
+<% }) %>
+
+
+

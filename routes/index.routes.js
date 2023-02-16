@@ -3,12 +3,13 @@ const router = express.Router();
 const bcrypt = require ('bcryptjs')
 const User = require('../models/User.model');
 //const session = require("express-session")
-
+const isAdmin = require('../middleware/isAdmin')
 /* GET home page */
 //            /
 router.get("/", (req, res, next) => {
   res.render("index");
 });
+
 
 // signup
 router.get("/signup", (req, res, next) => {
@@ -50,6 +51,7 @@ router.post("/login", async (req, res) => {
 })
 //profile 
 router.get("/profile", (req, res) => {
+  
   console.log("the req", req.session.user)
   res.render("profile", {user : req.session.user});
 });
@@ -58,6 +60,8 @@ router.get('/logout',  (req, res) => {
     if (err) next(err)
     res.render("index")
   })
+
+  
 })
 
 

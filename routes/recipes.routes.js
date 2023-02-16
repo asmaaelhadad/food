@@ -6,14 +6,19 @@ const User = require('../models/User.model');
 
 const Recipe= require('../models/recipe.model');
 ///recipes
-router.get("/recipes" , (req,res) =>{
-   res.render("recipe")
+router.get("/" , async (req,res) =>{
+ const allRecipes= await Recipe.find()
+   res.render("recipe", {allRecipes})
 }
 )
 
+
+
+
  //add new
 
-router.get("/recipes/new" , isAdmin , (req,res) =>{
+router.get("/recipes/new" , isAdmin , async (req,res) =>{
+ 
 res.render("new")
     //res.redirect("recipe")
 }) 
@@ -26,19 +31,27 @@ res.render("new")
   })
    // render file, redirect page url
    //delete , update
+
    router.get('/:recipeId', async (req, res) => {
   const recipeFound = await Recipe.findById(req.params.recipeId)
 
 
   res.render('one', { recipeFound })
 })
+
+
+
+
+
 //delete
-  router.get("/:recipeId/delete" , async (req, res) => {
+  router.get("/:recipeId/delete"  ,  async (req, res) => {
     await Recipe.findByIdAndDelete(req.params.recipeId)
-       res.render(`recipe`)
+       res.render(`profile`)
       })
 //update
-router.get("/:recipeId/update"  , async (req,res) =>{
+
+router.get("/:recipeId/update"  ,  async (req,res) =>{
+
   const recipeFound = await Recipe.findById(req.params.recipeId)
 
   res.render("update", { recipeFound })
