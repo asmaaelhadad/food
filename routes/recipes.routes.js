@@ -33,7 +33,10 @@ res.render("new")
    // render file, redirect page url
    //delete , update
 
+
+
    
+
    router.get('/:recipeId', async (req, res) => {
   const recipeFound = await Recipe.findById(req.params.recipeId)
 

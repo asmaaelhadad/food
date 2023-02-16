@@ -1,5 +1,7 @@
 <h3>Hello, this is the page for the recipes</h3>
 <h1>All recipes</h1>
+<h4 style="font-size: 50;">
+    
 <% allRecipes.forEach(recipe => { %> <%= recipe.title %>
     
 <form method="GETT" action="/recipes/<%= recipe._id%>/update">
@@ -10,5 +12,5 @@
   </form>
 <% }) %>
 
-
+</h4>
 
