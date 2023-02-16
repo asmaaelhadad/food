@@ -23,15 +23,17 @@ res.render("new")
     //res.redirect("recipe")
 }) 
   router.post('/recipes/new',   async (req, res) => {
-    const body = req.body
+  try { const body = req.body
+    console.log(req.body)
  await Recipe.create(
      body
 )
- res.redirect('/recipes/recipes')
-  })
+ res.redirect('/recipes')
+}  catch (err){console.log(err)} })
    // render file, redirect page url
    //delete , update
 
+   
    router.get('/:recipeId', async (req, res) => {
   const recipeFound = await Recipe.findById(req.params.recipeId)
 
