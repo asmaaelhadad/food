@@ -1,5 +1,5 @@
 body {
-  background-image: url('../images/Nile-river-730x327.jpg');
+  background-image: url('../images/konafa.webp');
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
@@ -54,6 +54,7 @@ body {
   background-color: #f1f1f1;
 }
 
+h4 {font-size: 50px;}
 /* Responsive columns - one column layout (vertical) on small screens 
 @media screen and (max-width: 600px) {
   .column {
